@@ -20,9 +20,9 @@ export default class index extends Component {
   render() {
     return (
       <div>
-        <Header data-test-id="header" addUndoItem={this.addUndoItem} />
+        <Header data-testid="header" addUndoItem={this.addUndoItem} />
         <UndoList
-          data-test-id="undo-list"
+          data-testid="undo-list"
           list={this.state.undoList}
           deleteUndoItem={this.deleteUndoItem}
         />

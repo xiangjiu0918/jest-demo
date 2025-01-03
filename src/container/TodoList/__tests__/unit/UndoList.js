@@ -1,32 +1,32 @@
-import { shallow } from "enzyme";
+import React from "react";
+import { screen, render, fireEvent } from "@testing-library/react";
 import UndoList from "../../UndoList";
 
 test('快照测试', () => {
-  const wrapper = shallow(<UndoList list={[]} />);
-  expect(wrapper).toMatchSnapshot();
+  render(<UndoList list={[]} />);
+  expect(screen).toMatchSnapshot();
 })
 
 test('props.list为空时，列表展示为空', () => {
-  const wrapper = shallow(<UndoList list={[]} />);
-  // console.log(wrapper.find("[data-test-id='list-item']"));
-  expect(wrapper.find("[data-test-id='list-item']").length).toBe(0);
+  render(<UndoList list={[]} />);
+  expect(screen.queryByTestId('list-item')).toBeNull();
 })
 
 test('props.list为不为空时，列表展示对应项', () => {
   const list = ['hello', 'world'];
-  const wrapper = shallow(<UndoList list={list} />);
-  const listItem = wrapper.find("[data-test-id='list-item']");
+  render(<UndoList list={list} />);
+  const listItem = screen.getAllByTestId('list-item');
   expect(listItem.length).toBe(2);
-  expect(listItem.at(0).text()).toBe('hello');
-  expect(listItem.at(1).text()).toBe('world');
+  expect(listItem[0]).toHaveTextContent(list[0]);
+  expect(listItem[1]).toHaveTextContent(list[1]);
 })
 
 test('点击删除按钮时，调用props.deleteUndoItem', () => {
   const list = ['hello', 'world'];
   const func = jest.fn();
-  const wrapper = shallow(<UndoList list={list} deleteUndoItem={func} />);
-  const deleteBtn = wrapper.find("[data-test-id='delete-btn']");
-  deleteBtn.at(0).simulate('click');
+  render(<UndoList list={list} deleteUndoItem={func} />);
+  const deleteBtn = screen.getAllByTestId('delete-btn');
+  fireEvent.click(deleteBtn[0])
   expect(func).toHaveBeenCalled();
   expect(func).toHaveBeenLastCalledWith(0);
 })

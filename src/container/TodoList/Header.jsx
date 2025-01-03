@@ -15,7 +15,7 @@ export default class Header extends Component {
       <div className="header-wrapper">
         <span className="header-span">TodoList</span>
         <input
-          data-test-id="input"
+          data-testid="input"
           className="header-input"
           value={this.state.inputData}
           placeholder="请输入待办项"
