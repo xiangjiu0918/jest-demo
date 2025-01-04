@@ -3,7 +3,7 @@ import Header from "./Header";
 import "./style.css";
 import UndoList from "./UndoList";
 
-export default function index() {
+export default function index(props) {
   const [undoList, changeUndoList] = React.useState([]);
   function addUndoItem(item) {
     changeUndoList([...undoList, item]);
@@ -15,6 +15,7 @@ export default function index() {
   }
   return (
     <div>
+      {props.testFunc && props.testFunc(undoList, addUndoItem, deleteUndoItem)}
       <Header data-testid="header" addUndoItem={addUndoItem} />
       <UndoList
         data-testid="undo-list"

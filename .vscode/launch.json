@@ -1,0 +1,13 @@
+{
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "test",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["jest", "Header"],
+            "protocol": "inspector"
+        }
+        
+    ]
+}

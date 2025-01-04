@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Header(props) {
-  const [inputData, changeInputData] = React.useState("");
+  const [inputData, changeInputData] = useState("");
   function handleKeyUp(e) {
     if (e.keyCode === 13 && inputData !== "") {
       props.addUndoItem(inputData);
