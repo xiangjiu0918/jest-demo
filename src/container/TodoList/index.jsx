@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "./Header";
 import "./style.css";
 import UndoList from "./UndoList";
 
-export default function index(props) {
-  const [undoList, changeUndoList] = React.useState([]);
+export default function TodoList(props) {
+  const [undoList, changeUndoList] = useState([]);
   function addUndoItem(item) {
     changeUndoList([...undoList, item]);
   }
